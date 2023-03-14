@@ -4,16 +4,15 @@ namespace Maze_Hunter
 {
 	internal class UI
 	{
-		public static string screenName;
-		public static string screenData;
-		public static string[] options;
-
-		public static int selectedOption = 0;
+		public static string currentScreen;
+		public static string Title = "";
+		public static string[] Options = { };
+		public static int SelectedOption = 0;
 
 		public static void Init()
 		{
-			Console.SetWindowSize(50, 20);
-			Console.SetBufferSize(50, 20);
+			Console.SetWindowSize(50, 25);
+			Console.SetBufferSize(50, 25);
 			Console.ForegroundColor = ConsoleColor.Blue;
 			Console.CursorVisible = false;
 
@@ -24,56 +23,90 @@ namespace Maze_Hunter
 		public static void Draw()
 		{
 			Console.Clear();
-			Console.WriteLine(screenData);
+			Console.WriteLine(Title);
 
-			for (int i = 0; i < options.Length; i++)
+			for (int i = 0; i < Options.Length; i++)
 			{
 				string brackets = "  "; // double space
-				if (selectedOption == i)
+				if (SelectedOption == i)
 				{
+					Console.BackgroundColor = ConsoleColor.DarkBlue;
 					brackets = "[]";
 				}
-				Console.WriteLine(brackets[0] + options[i] + brackets[1]);
+				Console.WriteLine(brackets[0] + Options[i] + brackets[1]);
+				Console.BackgroundColor = ConsoleColor.Black;
+			}
+
+			if (currentScreen == "MazeScreen")
+			{
+				Maze.Draw();
 			}
 		}
 
 		public static void SelectNextOption()
 		{
-			selectedOption = (selectedOption + 1) % options.Length;
+			SelectedOption = (SelectedOption + 1) % Options.Length;
 		}
 
 		public static void SelectPreviousOption()
 		{
-			if (selectedOption == 0)
+			if (SelectedOption == 0)
 			{
-				selectedOption = options.Length;
+				SelectedOption = Options.Length;
 			}
-			selectedOption = (selectedOption - 1) % options.Length;
+			SelectedOption = (SelectedOption - 1) % Options.Length;
 		}
 
 		public static string GetCurrentOption()
 		{
-			return options[selectedOption].Trim();
+			return Options[SelectedOption].Trim();
 		}
 
 		public static void SetScreen(string newScreen)
 		{
-			screenName = newScreen;
-			selectedOption = 0;
-			switch (screenName)
+			currentScreen = newScreen;
+			SelectedOption = 0;
+
+			if (currentScreen == "SelectAlliance")
 			{
-				case "SelectAlliance":
-					UI.screenData = Screens.SelectAllianceScreen;
-					UI.options = Screens.SelectAllianceOptions;
-					break;
-				case "SelectGender":
-					UI.screenData = Screens.SelectGenderScreen;
-					UI.options = Screens.SelectGenderOptions;
-					break;
-				case "MainScreen":
-					UI.screenData = Screens.MainScreen;
-					UI.options = Screens.MainScreenOptions;
-					break;
+				Title = "==================================================\n" +
+						"=====            Select Alliance!            =====\n" +
+						"==================================================\n";
+
+				Options = new string[] {
+					"   Good  ",
+					"   Evil  "
+				};
+			} 
+			else if (currentScreen == "SelectGender")
+			{
+				Title = "==================================================\n" +
+						"=====             Select Gender!             =====\n" +
+						"==================================================\n";
+
+				Options = new string[] {
+					"    Male   ",
+					"   Female  "
+				};
+			} if (currentScreen == "MainScreen")
+			{
+				Title = "==================================================\n" +
+						"=====              Hello Hunter!             =====\n" +
+						"==================================================\n";
+
+				Options = new string[] {
+					"     Enter Maze    ",
+					"   View Character  ",
+					" Rebuild Character ",
+					"        Exit       "
+				};
+			} else if (currentScreen == "MazeScreen")
+			{
+				Title = "==================================================\n" +
+						"=====                  MAZE!                 =====\n" +
+						"==================================================\n";
+
+				Options = new string[] { };
 			}
 		}
 	}

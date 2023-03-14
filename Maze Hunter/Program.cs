@@ -35,6 +35,22 @@ namespace Maze_Hunter
 				{
 					Update();
 				}
+				else if (keyInfo.Key == ConsoleKey.W)
+				{
+					Maze.MoveUp();
+				}
+				else if (keyInfo.Key == ConsoleKey.S)
+				{
+					Maze.MoveDown();
+				}
+				else if (keyInfo.Key == ConsoleKey.A)
+				{
+					Maze.MoveLeft();
+				}
+				else if (keyInfo.Key == ConsoleKey.D)
+				{
+					Maze.MoveRight();
+				}
 
 				if (IsRunning)
 				{
@@ -54,36 +70,27 @@ namespace Maze_Hunter
 			}
 			else
 			{
-				if (UI.screenName == "SelectAlliance")
+				if (UI.currentScreen == "SelectAlliance")
 				{
 					// TODO: Assign alliance to the hunter.
 
 					UI.SetScreen("SelectGender"); // Go to next screen
 				}
-				else if (UI.screenName == "SelectGender")
+				else if (UI.currentScreen == "SelectGender")
 				{
-					// TODO: Assign geender to the hunter.
+					// TODO: Assign gender to the hunter.
 
 					UI.SetScreen("MainScreen"); // Go to next screen
+				}
+				else if (UI.currentScreen == "MainScreen")
+				{
+					if (UI.GetCurrentOption() == "Enter Maze")
+					{
+						Maze.Init();
+						UI.SetScreen("MazeScreen"); // Go to maze
+					}
 				}
 			}
 		}
 	}
 }
-
-// > Select Alliance
-//		Good
-//		Evil
-// > Select Gender
-//		Male
-//		Female
-// > Select Name
-//		Enter name
-//		Generate name
-// > Distribute stats
-
-// Welcome to Maze Hunter
-// - Enter Maze
-// - View Character
-// - Rebuild Character
-// - Exit
