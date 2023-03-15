@@ -2,13 +2,13 @@
 
 namespace Maze_Hunter
 {
-	internal class Maze
+	internal class MazeRoom
 	{
-		public static char[,] Grid = new char[8, 8];
+		public char[,] Grid = new char[8, 8];
 
 		public static int[] position;
 
-		public static void Init()
+		public MazeRoom()
 		{
 			for (int i = 0; i < 8; i++)
 			{
@@ -19,10 +19,10 @@ namespace Maze_Hunter
 			}
 
 			position = new int[2] {0, 0};
-			Grid[position[0], position[1]] = 'X';
+			Grid[position[0], position[1]] = 'P';
 		}
 
-		public static string GetRowString(int row)
+		public string GetRowString(int row)
 		{
 			string rowString = "";
 
@@ -34,47 +34,47 @@ namespace Maze_Hunter
 			return rowString;
 		}
 
-		public static void MoveUp()
+		public void MoveUp()
 		{
 			if (position[0] > 0)
 			{
 				Grid[position[0], position[1]] = ' ';
 				position[0]--;
-				Grid[position[0], position[1]] = 'X';
+				Grid[position[0], position[1]] = 'P';
 			}
 		}
 
-		public static void MoveDown()
+		public void MoveDown()
 		{
 			if (position[0] < Grid.GetLength(0) - 1)
 			{
 				Grid[position[0], position[1]] = ' ';
 				position[0]++;
-				Grid[position[0], position[1]] = 'X';
+				Grid[position[0], position[1]] = 'P';
 			}
 		}
 
-		public static void MoveLeft()
+		public void MoveLeft()
 		{
 			if (position[1] > 0)
 			{
 				Grid[position[0], position[1]] = ' ';
 				position[1]--;
-				Grid[position[0], position[1]] = 'X';
+				Grid[position[0], position[1]] = 'P';
 			}
 		}
 
-		public static void MoveRight()
+		public void MoveRight()
 		{
 			if (position[1] < Grid.GetLength(1) - 1)
 			{
 				Grid[position[0], position[1]] = ' ';
 				position[1]++;
-				Grid[position[0], position[1]] = 'X';
+				Grid[position[0], position[1]] = 'P';
 			}
 		}
 
-		public static void Draw()
+		public void Draw()
 		{
 			for (int i = 0; i < Grid.GetLength(0); i++)
 			{
@@ -86,7 +86,6 @@ namespace Maze_Hunter
 				Console.WriteLine("|");
 			}
 			Console.WriteLine("*-------------------------------*");
-			Console.WriteLine("Use W, A, S, D keys to move.");
 		}
 	}
 }
