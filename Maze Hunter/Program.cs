@@ -6,8 +6,8 @@ namespace Maze_Hunter
 	{
 		static void Main(string[] args)
 		{
-			Game game = new Game();
-			game.Loop();
+			Game game = new Game();		// Create an instance of the game
+			game.Loop();				// Start the game loop.
 		}
 	}
 }

@@ -2,7 +2,12 @@
 
 namespace Maze_Hunter
 {
-	internal class MazeRoom
+	// The MazeRoom class manages the movement and actions in the maze.
+	// The maze is a 8x8 matrix of characters.
+	// The P character represents the Player.
+	// The A and T characters represent the Assasins and Thieves
+	// The ' ' character represent an empty spot.
+	class MazeRoom
 	{
 		public char[,] Grid = new char[8, 8];
 
@@ -20,18 +25,6 @@ namespace Maze_Hunter
 
 			position = new int[2] {0, 0};
 			Grid[position[0], position[1]] = 'P';
-		}
-
-		public string GetRowString(int row)
-		{
-			string rowString = "";
-
-			for (int i = 0; i < 8; i++)
-			{
-				rowString += $"| {Grid[row, i]} ";
-			}
-
-			return rowString;
 		}
 
 		public void MoveUp()
@@ -72,20 +65,6 @@ namespace Maze_Hunter
 				position[1]++;
 				Grid[position[0], position[1]] = 'P';
 			}
-		}
-
-		public void Draw()
-		{
-			for (int i = 0; i < Grid.GetLength(0); i++)
-			{
-				Console.WriteLine("*-------------------------------*");
-				for (int j = 0; j < Grid.GetLength(1); j++)
-				{
-					Console.Write($"| {Grid[i, j]} ");
-				}
-				Console.WriteLine("|");
-			}
-			Console.WriteLine("*-------------------------------*");
 		}
 	}
 }
