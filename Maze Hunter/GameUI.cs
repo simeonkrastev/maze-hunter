@@ -52,7 +52,12 @@ namespace Maze_Hunter
 			gameScreens["StartScreen"] = CreateStartScreen();
 			gameScreens["NewGameScreen"] = CreateNewGameScreen();
 			gameScreens["HistoryScreen"] = CreateHistoryScreen();
-			gameScreens["MazeScreen"] = CreateMazeScreen(maze);
+			gameScreens["GuildScreen"] = CreateGuildScreen();
+			gameScreens["GenderScreen"] = CreateGenderScreen();
+			gameScreens["NameScreen"] = CreateNameScreen();
+			gameScreens["AttributesScreen"] = CreateAttributesScreen();
+			gameScreens["RandomizeScreen"] = CreateRandomizeScreen();
+            gameScreens["MazeScreen"] = CreateMazeScreen(maze);
 		}
 
 		private Screen CreateStartScreen()
@@ -109,7 +114,97 @@ namespace Maze_Hunter
 			return new Screen(title, menu);
 		}
 
-		private Screen CreateMazeScreen(MazeRoom maze)
+
+        private Screen CreateGuildScreen()
+        {
+            string title = "==================================================\n" +
+                            "=====                 Guild!                 =====\n" +
+                            "==================================================\n";
+
+            string[] options = new string[] {
+				// TODO: add more options here when implementing the Guild feature.
+				"    Back    "
+				
+            };
+
+            OptionsMenu menu = new OptionsMenu(options);
+
+            return new Screen(title, menu);
+        }
+
+
+        private Screen CreateGenderScreen()
+        {
+            string title = "==================================================\n" +
+                            "=====                 Gender!                =====\n" +
+                            "==================================================\n";
+
+            string[] options = new string[] {
+				// TODO: add more options here when implementing the Gender feature.
+				"    Back    "
+
+            };
+
+            OptionsMenu menu = new OptionsMenu(options);
+
+            return new Screen(title, menu);
+        }
+
+        private Screen CreateNameScreen()
+        {
+            string title = "==================================================\n" +
+                            "=====                 Name!                  =====\n" +
+                            "==================================================\n";
+
+            string[] options = new string[] {
+				// TODO: add more options here when implementing the Name feature.
+				"    Back    "
+
+            };
+
+            OptionsMenu menu = new OptionsMenu(options);
+
+            return new Screen(title, menu);
+        }
+
+        private Screen CreateAttributesScreen()
+        {
+            string title = "==================================================\n" +
+                            "=====                 Attributes!            =====\n" +
+                            "==================================================\n";
+
+            string[] options = new string[] {
+				// TODO: add more options here when implementing the Attributes feature.
+				"    Back    "
+
+            };
+
+            OptionsMenu menu = new OptionsMenu(options);
+
+            return new Screen(title, menu);
+        }
+        
+
+
+        private Screen CreateRandomizeScreen()
+        {
+            string title =  "==================================================\n" +
+                            "=====                 Randomize!             =====\n" +
+                            "==================================================\n";
+
+            string[] options = new string[] {
+				// TODO: add more options here when implementing the Randomize feature.
+				"    Back    "
+
+            };
+
+            OptionsMenu menu = new OptionsMenu(options);
+
+            return new Screen(title, menu);
+        }
+
+
+        private Screen CreateMazeScreen(MazeRoom maze)
 		{
 			string title =	"==================================================\n" +
 							"=====                  MAZE!                 =====\n" +
