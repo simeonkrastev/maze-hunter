@@ -76,13 +76,80 @@ namespace Maze_Hunter
 				{
 					UI.SetScreen("MazeScreen");
 				}
+
 				// For now the other options in the New Game screen do nothing.
 				else if (UI.GetMenu().GetCurrentOptionText() == "Back")
 				{
 					UI.SetScreen("StartScreen");
 				}
-			}
-			else if (UI.currentScreen == "HistoryScreen")
+				//indicate that each of the options leads to its own screen
+				
+				else if (UI.GetMenu().GetCurrentOptionText() == "Guild")
+				{
+					UI.SetScreen("GuildScreen");
+					
+				}
+                else if (UI.GetMenu().GetCurrentOptionText() == "Gender")
+                {
+                    UI.SetScreen("GenderScreen");
+
+                }
+                else if (UI.GetMenu().GetCurrentOptionText() == "Name")
+                {
+                    UI.SetScreen("NameScreen");
+
+                }
+                else if (UI.GetMenu().GetCurrentOptionText() == "Attributes")
+                {
+                    UI.SetScreen("AttributesScreen");
+
+                }
+                else if (UI.GetMenu().GetCurrentOptionText() == "Randomize")
+                {
+                    UI.SetScreen("RandomizeScreen");
+
+                }
+            }
+			//fill each of those screens with their own options
+
+			else if(UI.currentScreen == "GuildScreen")
+			{
+                if (UI.GetMenu().GetCurrentOptionText() == "Back")
+                {
+                    UI.SetScreen("NewGameScreen");
+                }
+            }
+            else if (UI.currentScreen == "GenderScreen")
+            {
+                if (UI.GetMenu().GetCurrentOptionText() == "Back")
+                {
+                    UI.SetScreen("NewGameScreen");
+                }
+            }
+            else if (UI.currentScreen == "NameScreen")
+            {
+                if (UI.GetMenu().GetCurrentOptionText() == "Back")
+                {
+                    UI.SetScreen("NewGameScreen");
+                }
+            }
+            else if (UI.currentScreen == "AttributesScreen")
+            {
+                if (UI.GetMenu().GetCurrentOptionText() == "Back")
+                {
+                    UI.SetScreen("NewGameScreen");
+                }
+            }
+            else if (UI.currentScreen == "RandomizeScreen")
+            {
+                if (UI.GetMenu().GetCurrentOptionText() == "Back")
+                {
+                    UI.SetScreen("NewGameScreen");
+                }
+            }
+
+
+            else if (UI.currentScreen == "HistoryScreen")
 			{
 				// For now only the Back option is available.
 				if (UI.GetMenu().GetCurrentOptionText() == "Back")
