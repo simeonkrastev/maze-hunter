@@ -14,6 +14,7 @@ namespace Maze_Hunter
 		{
 			Maze = new MazeRoom();
 			UI = new GameUI(Maze);
+			Player = new Character();
 		}
 
 		// All games have a central game loop. The process goes as follows:
