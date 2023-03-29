@@ -5,11 +5,13 @@
 	class OptionsMenu
 	{
 		public string[] Options;
+		public string[] OptionParams;
 		public int SelectedOptionIndex;
 
 		public OptionsMenu(string[] options)
 		{
 			Options = options;
+			OptionParams = new string[options.Length];
 			SelectedOptionIndex = 0;
 		}
 
