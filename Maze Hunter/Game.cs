@@ -11,7 +11,7 @@ namespace Maze_Hunter
 		bool IsRunning = true;		// When set to false, the game loop stops and program exits.
 		GameUI UI;					// The UI object holds the visual elements, but no game logic.
 		MazeRoom Maze;              // The Maze object holds the game logic, but no UI elements.
-		Character Player;
+		public Character Player;
 		// Creates a new instance of the game. (Should only be called once in the Main method)
 		public Game()
 		{
@@ -62,7 +62,8 @@ namespace Maze_Hunter
 				if (UI.GetMenu().GetCurrentOptionText() == "New Game")
 				{
 					UI.SetScreen("NewGameScreen");
-				}
+                    SetMenuParams();
+                }
 				else if (UI.GetMenu().GetCurrentOptionText() == "History")
 				{
 					UI.SetScreen("HistoryScreen");
@@ -100,7 +101,11 @@ namespace Maze_Hunter
                 else if (UI.GetMenu().GetCurrentOptionText() == "Name")
                 {
                     UI.SetScreen("NameScreen");
-
+					
+                }
+                else if (UI.GetMenu().GetCurrentOptionText() == "Back")
+                {
+                    UI.SetScreen("StartScreen");
                 }
                 else if (UI.GetMenu().GetCurrentOptionText() == "Attributes")
                 {
@@ -147,6 +152,18 @@ namespace Maze_Hunter
                 {
                     UI.SetScreen("NewGameScreen");
                 }
+				else if (UI.GetMenu().GetCurrentOptionText() == "Enter Name")
+				{
+					UI.SetScreen("NameEnter");
+					
+
+                    if (UI.GetMenu().GetCurrentOptionText() == "Save Name")
+                    {
+                        NameEnter();
+                        UI.SetScreen("NewGameScreen");
+                        SetMenuParams(); // Updates New Name on Select screen
+                    }
+                }
             }
             else if (UI.currentScreen == "AttributesScreen")
             {
@@ -174,6 +191,26 @@ namespace Maze_Hunter
 			{
 				// TODO: Use a key or an option to get back from the maze to the game menus.
 			}
+		}
+		void NameEnter()
+		{
+            Console.CursorVisible = true;
+            Player.Name = Console.ReadLine();
+            Console.CursorVisible = false;
+		}
+
+		void SetMenuParams()
+		{
+            if (Player.Guild != null)
+			{
+                UI.GetMenu().OptionParams[0] = Player.Guild;
+            }
+			
+			if(Player.Name != null)
+			{
+				UI.GetMenu().OptionParams[2] = Player.Name;
+			}
+			
 		}
 	}
 }

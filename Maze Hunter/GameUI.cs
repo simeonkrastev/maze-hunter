@@ -55,6 +55,7 @@ namespace Maze_Hunter
 			gameScreens["GuildScreen"] = CreateGuildScreen();
 			gameScreens["GenderScreen"] = CreateGenderScreen();
 			gameScreens["NameScreen"] = CreateNameScreen();
+			gameScreens["NameEnter"] = EnterNameScreen(); // Enter Name Screen ;)
 			gameScreens["AttributesScreen"] = CreateAttributesScreen();
 			gameScreens["RandomizeScreen"] = CreateRandomizeScreen();
             gameScreens["MazeScreen"] = CreateMazeScreen(maze);
@@ -83,6 +84,7 @@ namespace Maze_Hunter
 							"=====                New Game!               =====\n" +
 							"==================================================\n";
 
+			//string playerName = Game.Player.Name;
 			string[] options = new string[] {
 				"   Guild ",
 				"   Gender      ",
@@ -157,10 +159,28 @@ namespace Maze_Hunter
                             "=====                 Name!                  =====\n" +
                             "==================================================\n";
 
+			string[] options = new string[] {
+				// TODO: add more options here when implementing the Name feature.
+				"    Enter Name    ",
+				"    Random Name    ",
+                "    Back    "
+
+            };
+
+            OptionsMenu menu = new OptionsMenu(options);
+
+            return new Screen(title, menu);
+        }
+
+		private Screen EnterNameScreen()
+		{
+            string title = "==================================================\n" +
+                            "=====           Enter your Name!             =====\n" +
+                            "==================================================\n";
+
             string[] options = new string[] {
 				// TODO: add more options here when implementing the Name feature.
-				"    Back    "
-
+                "    Save Name    "
             };
 
             OptionsMenu menu = new OptionsMenu(options);
