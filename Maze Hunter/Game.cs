@@ -5,6 +5,9 @@ namespace Maze_Hunter
 	// The central class for the game logic. 
 	class Game
 	{
+		bool isGuild = false; // Ceck if guild has been chosen
+		string guildOption = "";
+
 		bool IsRunning = true;		// When set to false, the game loop stops and program exits.
 		GameUI UI;					// The UI object holds the visual elements, but no game logic.
 		MazeRoom Maze;              // The Maze object holds the game logic, but no UI elements.
@@ -112,9 +115,21 @@ namespace Maze_Hunter
             }
 			//fill each of those screens with their own options
 
+
+
 			else if(UI.currentScreen == "GuildScreen")
 			{
-                if (UI.GetMenu().GetCurrentOptionText() == "Back")
+				if (UI.GetMenu().GetCurrentOptionText() == "THIEVES")
+                {
+					isGuild = true;
+					guildOption = "THIEVES";
+                }
+				else if (UI.GetMenu().GetCurrentOptionText() == "ASSASSINS")
+                {
+					isGuild = true;
+					guildOption = "ASSASSINS";
+                }
+				else if (UI.GetMenu().GetCurrentOptionText() == "Back")
                 {
                     UI.SetScreen("NewGameScreen");
                 }
@@ -135,7 +150,7 @@ namespace Maze_Hunter
             }
             else if (UI.currentScreen == "AttributesScreen")
             {
-                if (UI.GetMenu().GetCurrentOptionText() == "Back")
+				if (UI.GetMenu().GetCurrentOptionText() == "Back")
                 {
                     UI.SetScreen("NewGameScreen");
                 }
@@ -147,8 +162,6 @@ namespace Maze_Hunter
                     UI.SetScreen("NewGameScreen");
                 }
             }
-
-
             else if (UI.currentScreen == "HistoryScreen")
 			{
 				// For now only the Back option is available.

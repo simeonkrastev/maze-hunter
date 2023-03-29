@@ -84,7 +84,7 @@ namespace Maze_Hunter
 							"==================================================\n";
 
 			string[] options = new string[] {
-				"   Guild       ",
+				"   Guild ",
 				"   Gender      ",
 				"   Name        ",
 				"   Attributes  ",
@@ -115,16 +115,17 @@ namespace Maze_Hunter
 		}
 
 
-        private Screen CreateGuildScreen()
+        public Screen CreateGuildScreen()
         {
             string title = "==================================================\n" +
-                            "=====                 Guild!                 =====\n" +
-                            "==================================================\n";
+                           "=====                 Guild!                 =====\n" +
+                           "==================================================\n";
 
             string[] options = new string[] {
 				// TODO: add more options here when implementing the Guild feature.
-				"    Back    "
-				
+				" THIEVES",
+				"ASSASSINS",
+				"  Back    "
             };
 
             OptionsMenu menu = new OptionsMenu(options);
@@ -175,7 +176,12 @@ namespace Maze_Hunter
 
             string[] options = new string[] {
 				// TODO: add more options here when implementing the Attributes feature.
-				"    Back    "
+				"Points Left:",
+				"Healt:",
+				"Attack:",
+				"Randomize",
+				"Done",
+				"Back    "
 
             };
 
