@@ -8,7 +8,7 @@ namespace Maze_Hunter
 		bool IsRunning = true;		// When set to false, the game loop stops and program exits.
 		GameUI UI;					// The UI object holds the visual elements, but no game logic.
 		MazeRoom Maze;              // The Maze object holds the game logic, but no UI elements.
-		Character Player;
+		public Character Player;
 		// Creates a new instance of the game. (Should only be called once in the Main method)
 		public Game()
 		{
