@@ -89,13 +89,13 @@ namespace Maze_Hunter
 			//string playerName = Game.Player.Name;
 			string[] options = new string[] 
 			{
-				"   Guild ",
-				"   Gender      ",
-				"   Name        ",
-				"   Attributes  ",
-				"   Randomize   ",
-				"   Start Game  ",
-				"   Back  ",
+				"   Guild",
+				"   Gender",
+				"   Name",
+				"   Attributes",
+				"   Randomize",
+				"   Start Game",
+				"   Back	",
 			};
 
 			OptionsMenu menu = new OptionsMenu(options);
@@ -129,8 +129,8 @@ namespace Maze_Hunter
             string[] options = new string[] 
 			{
 				// TODO: add more options here when implementing the Guild feature.
-				" THIEVES",
-				"ASSASSINS",
+				"  Guild Of Thieves    ",
+                "  Guild Of Assassins    ",
 				"  Back    "
             };
 
@@ -148,8 +148,10 @@ namespace Maze_Hunter
 
             string[] options = new string[] 
 			{
-				// TODO: add more options here when implementing the Gender feature.
-				"    Back    "
+                "    Male    ",
+                "    Female    ",
+                "    Random    ",
+                "    Back    "
             };
 
             OptionsMenu menu = new OptionsMenu(options);

@@ -117,15 +117,19 @@ namespace Maze_Hunter
             }			//fill each of those screens with their own options
 			else if (UI.currentScreen == "GuildScreen")
 			{
-				if (UI.GetMenu().GetCurrentOptionText() == "THIEVES")
+				if (UI.GetMenu().GetCurrentOptionText() == "Guild Of Thieves")
                 {
 					ChooseGuild();
+                    Player.GuildChecker = 1;
+                    Player.Guilds();
 					UI.SetScreen("NewGameScreen");
 					SetGuildMenuParames();
 				}
-				else if (UI.GetMenu().GetCurrentOptionText() == "ASSASSINS")
+				else if (UI.GetMenu().GetCurrentOptionText() == "Guild Of Assassins")
                 {
 					ChooseGuild();
+                    Player.GuildChecker = 2;
+                    Player.Guilds();
 					UI.SetScreen("NewGameScreen");
 					SetGuildMenuParames();
 				}
@@ -136,6 +140,22 @@ namespace Maze_Hunter
             }
             else if (UI.currentScreen == "GenderScreen")
             {
+                if (UI.GetMenu().GetCurrentOptionText() == "Male")
+                {
+					Player.Male();
+                    UI.SetScreen("NewGameScreen");
+					SetGenderMenuParams();
+                }
+                if (UI.GetMenu().GetCurrentOptionText() == "Female")
+                {
+					Player.Female();
+                    UI.SetScreen("NewGameScreen");
+					SetGenderMenuParams();
+                }
+                if (UI.GetMenu().GetCurrentOptionText() == "Random")
+                {
+                    UI.SetScreen("NewGameScreen");
+                }
                 if (UI.GetMenu().GetCurrentOptionText() == "Back")
                 {
                     UI.SetScreen("NewGameScreen");
@@ -230,13 +250,31 @@ namespace Maze_Hunter
 			}
 		}
 
-		void SetNameMenuParams()
-		{
-			if(Player.Name != null)
-			{
-				UI.GetMenu().OptionParams[2] = Player.Name;
-			}
-			
-		}
-	}
+        void SetNameMenuParams()
+        {
+            if (Player.Name != null)
+            {
+                UI.GetMenu().OptionParams[2] = Player.Name;
+            }
+
+        }
+
+        void SetGenderMenuParams()
+        {
+            if (Player.Gender != null)
+            {
+                UI.GetMenu().OptionParams[1] = Player.Gender;
+            }
+
+        }
+
+        void SetGuildMenuParams()
+        {
+            if (Player.Guild != null)
+            {
+                UI.GetMenu().OptionParams[0] = Player.Guild;
+            }
+
+        }
+    }
 }

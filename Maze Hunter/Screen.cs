@@ -27,7 +27,7 @@ namespace Maze_Hunter
 				{
 					Console.BackgroundColor = ConsoleColor.DarkBlue;
 				}
-				Console.Write(Menu.Options[i]);		
+				Console.Write(Menu.Options[i]);
 				if (Menu.OptionParams[i] != null)
 				{
 					Console.WriteLine(" - " + Menu.OptionParams[i]);
