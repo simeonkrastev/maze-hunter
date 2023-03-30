@@ -5,19 +5,17 @@ namespace Maze_Hunter
 	// The central class for the game logic. 
 	class Game
 	{
-		bool isGuild = false; // Ceck if guild has been chosen
-		string guildOption = "";
-
 		bool IsRunning = true;		// When set to false, the game loop stops and program exits.
 		GameUI UI;					// The UI object holds the visual elements, but no game logic.
 		MazeRoom Maze;              // The Maze object holds the game logic, but no UI elements.
 		public Character Player;
+
 		// Creates a new instance of the game. (Should only be called once in the Main method)
 		public Game()
 		{
 			Maze = new MazeRoom();
-			UI = new GameUI(Maze);
 			Player = new Character();
+			UI = new GameUI(Maze, Player);
 		}
 
 		// All games have a central game loop. The process goes as follows:
@@ -40,6 +38,7 @@ namespace Maze_Hunter
 				else
 				{                                           // All other keys are passed to the
 					UI.HandleKey(keyInfo.Key);              // currently active screen. Each screen 
+					SetAttributesMenuParams();
 				}											// has specific logic for different keys
 
 				if (IsRunning)
@@ -48,7 +47,6 @@ namespace Maze_Hunter
 					keyInfo = Console.ReadKey();
 				}
 			}
-
 			// When the while-loop is over, the app exits.
 		}
 
@@ -62,7 +60,7 @@ namespace Maze_Hunter
 				if (UI.GetMenu().GetCurrentOptionText() == "New Game")
 				{
 					UI.SetScreen("NewGameScreen");
-                    SetMenuParams();
+					//SetNewGameMenuParams();
                 }
 				else if (UI.GetMenu().GetCurrentOptionText() == "History")
 				{
@@ -109,31 +107,28 @@ namespace Maze_Hunter
                 }
                 else if (UI.GetMenu().GetCurrentOptionText() == "Attributes")
                 {
-                    UI.SetScreen("AttributesScreen");
-
-                }
+					UI.SetScreen("AttributesScreen");
+				}
                 else if (UI.GetMenu().GetCurrentOptionText() == "Randomize")
                 {
                     UI.SetScreen("RandomizeScreen");
 
                 }
-            }
-			//fill each of those screens with their own options
-
-
-
-			else if(UI.currentScreen == "GuildScreen")
+            }			//fill each of those screens with their own options
+			else if (UI.currentScreen == "GuildScreen")
 			{
 				if (UI.GetMenu().GetCurrentOptionText() == "THIEVES")
                 {
-					isGuild = true;
-					guildOption = "THIEVES";
-                }
+					ChooseGuild();
+					UI.SetScreen("NewGameScreen");
+					SetGuildMenuParames();
+				}
 				else if (UI.GetMenu().GetCurrentOptionText() == "ASSASSINS")
                 {
-					isGuild = true;
-					guildOption = "ASSASSINS";
-                }
+					ChooseGuild();
+					UI.SetScreen("NewGameScreen");
+					SetGuildMenuParames();
+				}
 				else if (UI.GetMenu().GetCurrentOptionText() == "Back")
                 {
                     UI.SetScreen("NewGameScreen");
@@ -161,12 +156,24 @@ namespace Maze_Hunter
                     {
                         NameEnter();
                         UI.SetScreen("NewGameScreen");
-                        SetMenuParams(); // Updates New Name on Select screen
+						SetNameMenuParams(); // Updates New Name on Select screen
                     }
                 }
             }
             else if (UI.currentScreen == "AttributesScreen")
             {
+				if (UI.GetMenu().GetCurrentOptionText() == "Health:")
+				{
+					Player.IncreaseAttribute = "Health";
+					Player.DecreaseAttrtibute = "Health";
+					SetAttributesMenuParams();
+				} 
+				if (UI.GetMenu().GetCurrentOptionText() == "Attack:")
+                {
+                    Player.IncreaseAttribute = "Attack";
+                    Player.DecreaseAttrtibute = "Attack";
+                    SetAttributesMenuParams();
+                }
 				if (UI.GetMenu().GetCurrentOptionText() == "Back")
                 {
                     UI.SetScreen("NewGameScreen");
@@ -192,6 +199,7 @@ namespace Maze_Hunter
 				// TODO: Use a key or an option to get back from the maze to the game menus.
 			}
 		}
+
 		void NameEnter()
 		{
             Console.CursorVisible = true;
@@ -199,13 +207,31 @@ namespace Maze_Hunter
             Console.CursorVisible = false;
 		}
 
-		void SetMenuParams()
-		{
-            if (Player.Guild != null)
+		void ChooseGuild()
+        {
+			UI.GetMenu().OptionParams[0] = Player.Guild;
+		}
+
+		void SetGuildMenuParames()
+        {
+			if (Player.Guild != null)
 			{
-                UI.GetMenu().OptionParams[0] = Player.Guild;
-            }
-			
+				UI.GetMenu().OptionParams[0] = Player.Guild;
+			}
+		}
+
+		void SetAttributesMenuParams()
+		{
+			if (UI.currentScreen == "AttributesScreen")
+			{
+				UI.GetMenu().OptionParams[0] = Player.MaxStats.ToString();
+				UI.GetMenu().OptionParams[1] = Player.Health.ToString();
+				UI.GetMenu().OptionParams[2] = Player.Attack.ToString();
+			}
+		}
+
+		void SetNameMenuParams()
+		{
 			if(Player.Name != null)
 			{
 				UI.GetMenu().OptionParams[2] = Player.Name;

@@ -28,7 +28,7 @@ namespace Maze_Hunter
 					Console.BackgroundColor = ConsoleColor.DarkBlue;
 				}
 				Console.Write(Menu.Options[i]);		
-				if(Menu.OptionParams[i] != null)
+				if (Menu.OptionParams[i] != null)
 				{
 					Console.WriteLine(" - " + Menu.OptionParams[i]);
 				}
@@ -55,8 +55,52 @@ namespace Maze_Hunter
 		}
 	}
 
-	// This class manages a specific type of screen, only used for the maze.
-	// The MazeScreen has no menu, instead the maze matrix is drawn.
+	class AttributesScreen : Screen
+	{
+		private Character Player;
+
+		public AttributesScreen(string title, OptionsMenu menu, Character player)
+			: base(title, menu)
+		{
+			Player = player;
+		}
+
+		public override void HandleKey(ConsoleKey key)
+		{
+			switch (key)
+			{
+				case ConsoleKey.UpArrow:
+					Menu.SelectPreviousOption();
+					break;
+				case ConsoleKey.DownArrow:
+					Menu.SelectNextOption();
+					break;
+				case ConsoleKey.RightArrow:
+					if (Player.IncreaseAttribute == "Health")
+                    {
+						Player.IncreaseHealth();
+					}
+					else if (Player.IncreaseAttribute == "Attack")
+                    {
+						Player.IncreaseAttack();
+                    }	
+					break;
+				case ConsoleKey.LeftArrow:
+					if (Player.DecreaseAttrtibute == "Health")
+					{
+						Player.DecreaseHealth();
+					}
+					else if (Player.DecreaseAttrtibute == "Attack")
+					{
+						Player.DecreaseAttack();
+					}
+					break;
+			}
+		}
+	}
+
+		// This class manages a specific type of screen, only used for the maze.
+		// The MazeScreen has no menu, instead the maze matrix is drawn.
 	class MazeScreen : Screen
 	{
 		private MazeRoom Maze;

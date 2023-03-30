@@ -10,15 +10,16 @@ namespace Maze_Hunter
 	{
 		public string currentScreen;				// The key to the currently active screen
 		Dictionary<string, Screen> gameScreens;
+		Character Player;
 
-		public GameUI(MazeRoom maze)
+		public GameUI(MazeRoom maze, Character player)
 		{
 			Console.SetWindowSize(50, 25);			
 			Console.SetBufferSize(50, 25);
 			Console.ForegroundColor = ConsoleColor.Blue;
 			Console.CursorVisible = false;			// No need for a blinking cursor.
 
-			InitScreens(maze);
+			InitScreens(maze, player);
 			SetScreen("StartScreen");
 		}
 
@@ -43,7 +44,7 @@ namespace Maze_Hunter
 			gameScreens[currentScreen].HandleKey(key);
 		}
 
-		private void InitScreens(MazeRoom maze)     // Creates a dict with all the screens in the game.
+		private void InitScreens(MazeRoom maze, Character player)     // Creates a dict with all the screens in the game.
 		{
 			gameScreens = new Dictionary<string, Screen>();
 
@@ -56,7 +57,7 @@ namespace Maze_Hunter
 			gameScreens["GenderScreen"] = CreateGenderScreen();
 			gameScreens["NameScreen"] = CreateNameScreen();
 			gameScreens["NameEnter"] = EnterNameScreen(); // Enter Name Screen ;)
-			gameScreens["AttributesScreen"] = CreateAttributesScreen();
+			gameScreens["AttributesScreen"] = CreateAttributesScreen(player);
 			gameScreens["RandomizeScreen"] = CreateRandomizeScreen();
             gameScreens["MazeScreen"] = CreateMazeScreen(maze);
 		}
@@ -67,7 +68,8 @@ namespace Maze_Hunter
 							"=====              Hello Warrior!            =====\n" +
 							"==================================================\n";
 
-			string[] options = new string[] {
+			string[] options = new string[] 
+			{
 				"   New Game  ",
 				"   History   ",
 				"   Exit      "
@@ -85,7 +87,8 @@ namespace Maze_Hunter
 							"==================================================\n";
 
 			//string playerName = Game.Player.Name;
-			string[] options = new string[] {
+			string[] options = new string[] 
+			{
 				"   Guild ",
 				"   Gender      ",
 				"   Name        ",
@@ -106,7 +109,8 @@ namespace Maze_Hunter
 							"=====                 History!               =====\n" +
 							"==================================================\n";
 
-			string[] options = new string[] {
+			string[] options = new string[] 
+			{
 				// TODO: add more options here when implementing the History feature.
 				"    Back    "
 			};
@@ -116,14 +120,14 @@ namespace Maze_Hunter
 			return new Screen(title, menu);
 		}
 
-
         public Screen CreateGuildScreen()
         {
             string title = "==================================================\n" +
                            "=====                 Guild!                 =====\n" +
                            "==================================================\n";
 
-            string[] options = new string[] {
+            string[] options = new string[] 
+			{
 				// TODO: add more options here when implementing the Guild feature.
 				" THIEVES",
 				"ASSASSINS",
@@ -142,10 +146,10 @@ namespace Maze_Hunter
                             "=====                 Gender!                =====\n" +
                             "==================================================\n";
 
-            string[] options = new string[] {
+            string[] options = new string[] 
+			{
 				// TODO: add more options here when implementing the Gender feature.
 				"    Back    "
-
             };
 
             OptionsMenu menu = new OptionsMenu(options);
@@ -156,15 +160,15 @@ namespace Maze_Hunter
         private Screen CreateNameScreen()
         {
             string title = "==================================================\n" +
-                            "=====                 Name!                  =====\n" +
-                            "==================================================\n";
+                           "=====                 Name!                  =====\n" +
+                           "==================================================\n";
 
-			string[] options = new string[] {
+			string[] options = new string[] 
+			{
 				// TODO: add more options here when implementing the Name feature.
 				"    Enter Name    ",
 				"    Random Name    ",
                 "    Back    "
-
             };
 
             OptionsMenu menu = new OptionsMenu(options);
@@ -178,7 +182,8 @@ namespace Maze_Hunter
                             "=====           Enter your Name!             =====\n" +
                             "==================================================\n";
 
-            string[] options = new string[] {
+            string[] options = new string[] 
+			{
 				// TODO: add more options here when implementing the Name feature.
                 "    Save Name    "
             };
@@ -188,37 +193,37 @@ namespace Maze_Hunter
             return new Screen(title, menu);
         }
 
-        private Screen CreateAttributesScreen()
+        private Screen CreateAttributesScreen(Character player)
         {
             string title = "==================================================\n" +
-                            "=====                 Attributes!            =====\n" +
-                            "==================================================\n";
+                           "=====                 Attributes!            =====\n" +
+                           "==================================================\n";
 
-            string[] options = new string[] {
+            string[] options = new string[] 
+			{
 				// TODO: add more options here when implementing the Attributes feature.
-				"Points Left:",
-				"Healt:",
-				"Attack:",
-				"Randomize",
-				"Done",
-				"Back    "
+				"   Points Left:",
+				"   Health:     ",
+				"   Attack:     ",
+				"   Randomize   ",
+				"   Done       ",
+				" Back "
 
             };
 
             OptionsMenu menu = new OptionsMenu(options);
 
-            return new Screen(title, menu);
-        }
+            return new AttributesScreen(title, menu, player);
+		}
         
-
-
         private Screen CreateRandomizeScreen()
         {
             string title =  "==================================================\n" +
                             "=====                 Randomize!             =====\n" +
                             "==================================================\n";
 
-            string[] options = new string[] {
+            string[] options = new string[] 
+			{
 				// TODO: add more options here when implementing the Randomize feature.
 				"    Back    "
 
