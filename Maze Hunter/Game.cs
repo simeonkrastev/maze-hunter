@@ -1,10 +1,12 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace Maze_Hunter
 {
 	// The central class for the game logic. 
 	class Game
 	{
+		Random rand = new Random();
 		bool IsRunning = true;		// When set to false, the game loop stops and program exits.
 		GameUI UI;					// The UI object holds the visual elements, but no game logic.
 		MazeRoom Maze;              // The Maze object holds the game logic, but no UI elements.
@@ -179,6 +181,12 @@ namespace Maze_Hunter
 						SetNameMenuParams(); // Updates New Name on Select screen
                     }
                 }
+				else if(UI.GetMenu().GetCurrentOptionText() == "Random Name")
+				{
+					RandomName();
+                    UI.SetScreen("NewGameScreen");
+                    SetNameMenuParams();
+                }
             }
             else if (UI.currentScreen == "AttributesScreen")
             {
@@ -225,6 +233,24 @@ namespace Maze_Hunter
             Console.CursorVisible = true;
             Player.Name = Console.ReadLine();
             Console.CursorVisible = false;
+		}
+		void RandomName()
+		{
+            NameBase namebase = new NameBase();
+            int randomName = rand.Next(namebase.maleNames.Length);
+            if (Player.Gender == "Male")
+			{
+				Player.Name = namebase.maleNames[randomName];
+            }
+			else if (Player.Gender == "Female")
+			{
+				randomName = rand.Next(namebase.femaleNames.Length);
+                Player.Name = namebase.femaleNames[randomName]; ;
+            }
+			else
+			{
+			}
+			
 		}
 
 		void ChooseGuild()
