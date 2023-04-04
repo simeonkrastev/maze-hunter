@@ -21,16 +21,17 @@ namespace Maze_Hunter
 			Console.Clear();								// Reset the console, before drawing
 			Console.WriteLine(Title);						// Draw the title on top of the screen
 
-			for (int i = 0; i < Menu.Options.Length; i++)	// Draw the menu
+			for (int i = 0; i < Menu.Options.Count; i++)	// Draw the menu
 			{
 				if (Menu.SelectedOptionIndex == i)			// The current selection is highlighted in blue
 				{
 					Console.BackgroundColor = ConsoleColor.DarkBlue;
 				}
-				Console.Write(Menu.Options[i]);
-				if (Menu.OptionParams[i] != null)
+				string currentOption = Menu.GetOptionAt(i);
+				Console.Write("   " + currentOption + "   ");
+				if (Menu.Options[currentOption] != null)
 				{
-					Console.WriteLine(" - " + Menu.OptionParams[i]);
+					Console.WriteLine(" - " + Menu.Options[currentOption]);
 				}
 				else
 				{
