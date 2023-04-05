@@ -3,14 +3,13 @@ using System.Collections.Generic;
 
 namespace Maze_Hunter
 {
-	// The GameUI class manages the cretion of different screens and switching between them.
+	// The GameUI class manages the creation of different screens and switching between them.
 	// All the game screens are initialized on program start and are kept in a dictionary.
 	// Only one screen is active at a time.
 	class GameUI
 	{
 		public string currentScreen;				// The key to the currently active screen
 		Dictionary<string, Screen> gameScreens;
-		Character Player;
 
 		public GameUI(MazeRoom maze, Character player)
 		{
