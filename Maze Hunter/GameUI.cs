@@ -18,6 +18,7 @@ namespace Maze_Hunter
 			Console.ForegroundColor = ConsoleColor.Blue;
 			Console.CursorVisible = false;			// No need for a blinking cursor.
 
+			Player = player;
 			InitScreens(maze, player);
 			SetScreen("StartScreen");
 		}
@@ -35,6 +36,7 @@ namespace Maze_Hunter
 		public void SetScreen(string newScreen)		// Sets a screen by key.
 		{
 			currentScreen = newScreen;
+			UpdateMenuParams();
 			Draw();
 		}
 
@@ -69,9 +71,9 @@ namespace Maze_Hunter
 
 			string[] options = new string[] 
 			{
-				"   New Game  ",
-				"   History   ",
-				"   Exit      "
+				"New Game",
+				"History",
+				"Exit"
 			};
 
 			OptionsMenu menu = new OptionsMenu(options);
@@ -88,13 +90,13 @@ namespace Maze_Hunter
 			//string playerName = Game.Player.Name;
 			string[] options = new string[] 
 			{
-				"   Guild",
-				"   Gender",
-				"   Name",
-				"   Attributes",
-				"   Randomize",
-				"   Start Game",
-				"   Back	",
+				"Guild",
+				"Gender",
+				"Name",
+				"Attributes",
+				"Randomize",
+				"Start Game",
+				"Back",
 			};
 
 			OptionsMenu menu = new OptionsMenu(options);
@@ -111,7 +113,7 @@ namespace Maze_Hunter
 			string[] options = new string[] 
 			{
 				// TODO: add more options here when implementing the History feature.
-				"    Back    "
+				"Back"
 			};
 
 			OptionsMenu menu = new OptionsMenu(options);
@@ -128,9 +130,9 @@ namespace Maze_Hunter
             string[] options = new string[] 
 			{
 				// TODO: add more options here when implementing the Guild feature.
-				"  Guild Of Thieves    ",
-                "  Guild Of Assassins    ",
-				"  Back    "
+				"Guild Of Thieves",
+                "Guild Of Assassins",
+				"Back"
             };
 
             OptionsMenu menu = new OptionsMenu(options);
@@ -147,10 +149,10 @@ namespace Maze_Hunter
 
             string[] options = new string[] 
 			{
-                "    Male    ",
-                "    Female    ",
-                "    Random    ",
-                "    Back    "
+                "Male",
+                "Female",
+                "Random",
+                "Back"
             };
 
             OptionsMenu menu = new OptionsMenu(options);
@@ -167,9 +169,9 @@ namespace Maze_Hunter
 			string[] options = new string[] 
 			{
 				// TODO: add more options here when implementing the Name feature.
-				"    Enter Name    ",
-				"    Random Name    ",
-                "    Back    "
+				"Enter Name",
+				"Random Name",
+                "Back"
             };
 
             OptionsMenu menu = new OptionsMenu(options);
@@ -186,7 +188,7 @@ namespace Maze_Hunter
             string[] options = new string[] 
 			{
 				// TODO: add more options here when implementing the Name feature.
-                "    Save Name    "
+                "Save Name"
             };
 
             OptionsMenu menu = new OptionsMenu(options);
@@ -203,13 +205,12 @@ namespace Maze_Hunter
             string[] options = new string[] 
 			{
 				// TODO: add more options here when implementing the Attributes feature.
-				"   Points Left:",
-				"   Health:     ",
-				"   Attack:     ",
-				"   Randomize   ",
-				"   Done       ",
-				" Back "
-
+				"Points Left:",
+				"Health:",
+				"Attack:",
+				"Randomize",
+				"Done",
+				"Back"
             };
 
             OptionsMenu menu = new OptionsMenu(options);
@@ -226,8 +227,7 @@ namespace Maze_Hunter
             string[] options = new string[] 
 			{
 				// TODO: add more options here when implementing the Randomize feature.
-				"    Back    "
-
+				"Back"
             };
 
             OptionsMenu menu = new OptionsMenu(options);
@@ -248,6 +248,21 @@ namespace Maze_Hunter
 			OptionsMenu menu = new OptionsMenu(options);
 
 			return new MazeScreen(title, menu, maze);
+		}
+
+		private void UpdateMenuParams()
+		{
+			if (currentScreen == "NewGameScreen")
+			{
+				GetMenu().Options["Name"] = Player.Name;
+				GetMenu().Options["Gender"] = Player.Gender;
+				GetMenu().Options["Guild"] = Player.Guild;
+
+				if (Player.Attack != 0 || Player.Health != 0)
+				{
+					GetMenu().Options["Attributes"] = $"H:{Player.Health}, A:{Player.Attack}";
+				}
+			}
 		}
 	}
 }
