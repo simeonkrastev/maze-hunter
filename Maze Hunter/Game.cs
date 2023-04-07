@@ -210,13 +210,13 @@ namespace Maze_Hunter
                 {
                     UI.SetScreen("NewGameScreen");
                 }
-				/*else if(currentOptionText == "Randomize all")
+				else if(currentOptionText == "Randomize all")
 				{
 					RandomGuild();
                     RandomGender();
                     RandomName();
 					//RandomAttributes( *when ready* ); 
-                }*/
+                }
             }
 
             else if (UI.currentScreen == "HistoryScreen")

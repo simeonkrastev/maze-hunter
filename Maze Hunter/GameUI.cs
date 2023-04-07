@@ -228,7 +228,7 @@ namespace Maze_Hunter
 
             string[] options = new string[] 
 			{
-				//"Randomize all",
+				"Randomize all",
 				"Back"
             };
 
