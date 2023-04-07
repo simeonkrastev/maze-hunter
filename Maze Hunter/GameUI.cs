@@ -10,6 +10,7 @@ namespace Maze_Hunter
 	{
 		public string currentScreen;				// The key to the currently active screen
 		Dictionary<string, Screen> gameScreens;
+		public Character Player;
 
 		public GameUI(MazeRoom maze, Character player)
 		{
@@ -132,6 +133,7 @@ namespace Maze_Hunter
 				// TODO: add more options here when implementing the Guild feature.
 				"Guild Of Thieves",
                 "Guild Of Assassins",
+				"Random", 
 				"Back"
             };
 
@@ -226,7 +228,7 @@ namespace Maze_Hunter
 
             string[] options = new string[] 
 			{
-				// TODO: add more options here when implementing the Randomize feature.
+				//"Randomize all",
 				"Back"
             };
 

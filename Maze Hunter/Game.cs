@@ -127,7 +127,12 @@ namespace Maze_Hunter
                     Player.Guilds();
 					UI.SetScreen("NewGameScreen");
 				}
-				else if (currentOptionText == "Back")
+                else if (currentOptionText == "Random")
+                {
+                    RandomGuild();
+                    UI.SetScreen("NewGameScreen");
+                }
+                else if (currentOptionText == "Back")
                 {
                     UI.SetScreen("NewGameScreen");
                 }
@@ -147,6 +152,7 @@ namespace Maze_Hunter
                 }
                 if (currentOptionText == "Random")
                 {
+					RandomGender();	
                     UI.SetScreen("NewGameScreen");
                 }
                 if (currentOptionText == "Back")
@@ -203,10 +209,14 @@ namespace Maze_Hunter
                 if (currentOptionText == "Back")
                 {
                     UI.SetScreen("NewGameScreen");
-                    SetGuildMenuParams();
-                    SetGenderMenuParams();
-                    SetNameMenuParams();
                 }
+				/*else if(currentOptionText == "Randomize all")
+				{
+					RandomGuild();
+                    RandomGender();
+                    RandomName();
+					//RandomAttributes( *when ready* ); 
+                }*/
             }
 
             else if (UI.currentScreen == "HistoryScreen")
