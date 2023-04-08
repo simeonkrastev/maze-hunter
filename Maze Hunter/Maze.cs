@@ -13,6 +13,24 @@ namespace Maze_Hunter
 
 		public static int[] position;
 
+		// Checks whether the Grid is empty (does not contain any NPCs)
+		public bool IsMazeEmpty()
+        {
+			for (int i = 0; i < Grid.GetLength(0); i++)
+            {
+				for (int j = 0; j < Grid.GetLength(1); j++)
+                {
+					char c = Grid[i, j];
+					if (c == 'A' || c == 'T')
+                    {
+						return false;
+                    }
+				}
+            }
+
+			return true;
+        }
+
 		public MazeRoom()
 		{
 			for (int i = 0; i < 8; i++)
@@ -24,7 +42,12 @@ namespace Maze_Hunter
 			}
 
 			position = new int[2] {0, 0};
-			Grid[position[0], position[1]] = 'P';
+
+			// place player, thief and assassin
+			Grid[0, 0] = 'P';
+			Grid[0, 2] = 'T';
+			Grid[2, 0] = 'A';
+
 		}
 
 		public void MoveUp()
