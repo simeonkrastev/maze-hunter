@@ -105,7 +105,6 @@ namespace Maze_Hunter
 	class MazeScreen : Screen
 	{
 		private MazeRoom Maze;
-
 		public MazeScreen(string title, OptionsMenu menu, MazeRoom maze) 
 			: base (title, menu)
 		{
@@ -129,6 +128,7 @@ namespace Maze_Hunter
 			}
 			Console.WriteLine("*-------------------------------*");
 		}
+
 
 		// For this screen, the arrow keys move the player, instead of menu selection.
 		public override void HandleKey(ConsoleKey key)

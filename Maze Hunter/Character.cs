@@ -1,4 +1,4 @@
-﻿
+﻿using System;
 namespace Maze_Hunter
 {
     internal class Character
@@ -105,6 +105,18 @@ namespace Maze_Hunter
         public void Female()
         {
             Gender = "Female";
+        }
+
+        public string Encounter(Character npc)
+        {
+            if (GuildChecker == npc.GuildChecker)
+            {
+                return $"Meeting with {npc.Name}";
+            }
+            else
+            {
+                return $"Battle with {npc.Name}";
+            }
         }
     }
 }

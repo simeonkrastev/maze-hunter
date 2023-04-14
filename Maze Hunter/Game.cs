@@ -278,6 +278,6 @@ namespace Maze_Hunter
             Player.GuildChecker = rand.Next(1, 3);
             Player.Guilds();
         }
-
+		
 	}
 }

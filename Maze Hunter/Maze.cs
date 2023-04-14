@@ -89,5 +89,32 @@ namespace Maze_Hunter
 				Grid[position[0], position[1]] = 'P';
 			}
 		}
+
+		public static Character EncounteredNPC(char[,] Grid) // Check for encounters with NPC's
+		{
+			for (int i = 0; i < Grid.GetLength(0); i++)
+			{
+				for (int j = 0; j < Grid.GetLength(1); j++)
+				{
+					if (Grid[i, j] == 'P' && Grid[i, j] == 'T')
+					{
+						Character npc = new Character(); // Example parameters
+						npc.Name = "Hristo";
+						npc.Guild = "Guild Of Thieves";
+						npc.GuildChecker = 1;
+						return npc;
+					}
+					else if (Grid[i, j] == 'P' && Grid[i, j] == 'A')
+					{
+						Character npc = new Character();
+						npc.Name = "Viki";
+						npc.Guild = "Guild Of Assassins";
+						npc.GuildChecker = 2;
+						return npc;
+					}
+				}
+			}
+			return null;
+		}
 	}
 }
