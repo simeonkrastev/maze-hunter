@@ -105,13 +105,15 @@ namespace Maze_Hunter
 	class MazeScreen : Screen
 	{
 		private MazeRoom Maze;
-		public MazeScreen(string title, OptionsMenu menu, MazeRoom maze) 
-			: base (title, menu)
-		{
-			Maze = maze;
-		}
+        //private Character Player;
+        public MazeScreen(string title, OptionsMenu menu, MazeRoom maze/*, Character player*/)
+            : base(title, menu)
+        {
+            Maze = maze;
+            //Player = player;
+        }
 
-		public override void Draw()
+        public override void Draw()
 		{
 			// First draw everything that the regular screens have.
 			base.Draw();
@@ -127,6 +129,11 @@ namespace Maze_Hunter
 				Console.WriteLine("|");
 			}
 			Console.WriteLine("*-------------------------------*");
+			
+			/*if(MazeRoom.EncounteredNPC(Maze.Grid) != null)
+			{
+                Console.WriteLine(Player.Encounter(MazeRoom.EncounteredNPC(Maze.Grid)));
+            }*/
 		}
 
 

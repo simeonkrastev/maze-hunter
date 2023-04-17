@@ -129,7 +129,7 @@ namespace Maze_Hunter
 				}
                 else if (currentOptionText == "Random")
                 {
-                    RandomGuild();
+                    Player.RandomGuild();
                     UI.SetScreen("NewGameScreen");
                 }
                 else if (currentOptionText == "Back")
@@ -152,7 +152,7 @@ namespace Maze_Hunter
                 }
                 if (currentOptionText == "Random")
                 {
-					RandomGender();	
+					Player.RandomGender();	
                     UI.SetScreen("NewGameScreen");
                 }
                 if (currentOptionText == "Back")
@@ -180,7 +180,7 @@ namespace Maze_Hunter
                 }
 				else if(currentOptionText == "Random Name")
 				{
-					RandomName();
+					Player.RandomName();
                     UI.SetScreen("NewGameScreen");
                 }
             }
@@ -212,9 +212,9 @@ namespace Maze_Hunter
                 }
 				else if(currentOptionText == "Randomize all")
 				{
-					RandomGuild();
-                    RandomGender();
-                    RandomName();
+					Player.RandomGuild();
+                    Player.RandomGender();
+                    Player.RandomName();
 					//RandomAttributes( *when ready* ); 
                 }
             }
@@ -236,48 +236,10 @@ namespace Maze_Hunter
 
 		void NameEnter()
 		{
-            Console.CursorVisible = true;
-            Player.Name = Console.ReadLine();
-            Console.CursorVisible = false;
+			Console.CursorVisible = true;
+			Player.Name = Console.ReadLine();
+			Console.CursorVisible = false;
 		}
-
-		void RandomName()
-		{
-			NameBase namebase = new NameBase();
-			int randomName;
-			if (Player.Gender == "Male")
-			{
-				randomName = rand.Next(namebase.maleNames.Length);
-				Player.Name = namebase.maleNames[randomName];
-			}
-			else if (Player.Gender == "Female")
-			{
-				randomName = rand.Next(namebase.femaleNames.Length);
-				Player.Name = namebase.femaleNames[randomName]; ;
-			}
-			else
-			{
-			}
-		}
-
-        void RandomGender()
-        {
-            int randomGender = rand.Next(1, 3);
-            if (randomGender == 1)
-            {
-                Player.Male();
-            }
-            else if (randomGender == 2)
-            {
-                Player.Female();
-            }
-        }
-
-        void RandomGuild()
-        {
-            Player.GuildChecker = rand.Next(1, 3);
-            Player.Guilds();
-        }
 		
 	}
 }

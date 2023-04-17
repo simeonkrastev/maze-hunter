@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Numerics;
+
 namespace Maze_Hunter
 {
     internal class Character
@@ -14,6 +16,7 @@ namespace Maze_Hunter
         public int GuildChecker;
         public int HealthBonus = 0;
         public int AttackBonus = 0;
+		public Random rand = new Random();
 
 
         public Character()
@@ -107,16 +110,74 @@ namespace Maze_Hunter
             Gender = "Female";
         }
 
+        public void RandomName()
+        {
+            NameBase namebase = new NameBase();
+            int randomName;
+            if (Gender == "Male")
+            {
+                randomName = rand.Next(namebase.maleNames.Length);
+                Name = namebase.maleNames[randomName];
+            }
+            else if (Gender == "Female")
+            {
+                randomName = rand.Next(namebase.femaleNames.Length);
+                Name = namebase.femaleNames[randomName]; ;
+            }
+            else
+            {
+            }
+        }
+
+        public void RandomGender()
+        {
+            int randomGender = rand.Next(1, 3);
+            if (randomGender == 1)
+            {
+                Male();
+            }
+            else if (randomGender == 2)
+            {
+                Female();
+            }
+        }
+
+        public void RandomGuild()
+        {
+            GuildChecker = rand.Next(1, 3);
+            Guilds();
+        }
+
         public string Encounter(Character npc)
         {
             if (GuildChecker == npc.GuildChecker)
             {
                 return $"Meeting with {npc.Name}";
+                //MeetFriend();
             }
             else
             {
                 return $"Battle with {npc.Name}";
             }
         }
+
+
+        /*public void MeetFriend()
+        {
+            if (Health < MaxStats)
+            {
+                Health += 4;
+
+                if (Health > MaxStats)
+                {
+                    Health = MaxStats;
+                }
+            }
+            else
+            {
+                Health++;
+            }
+        }*/
+
     }
 }
