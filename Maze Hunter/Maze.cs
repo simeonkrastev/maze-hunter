@@ -12,6 +12,7 @@ namespace Maze_Hunter
 		public char[,] Grid = new char[8, 8];
 
 		public static int[] position;
+		public Character npc;
 
 		// Checks whether the Grid is empty (does not contain any NPCs)
 		public bool IsMazeEmpty()
@@ -52,6 +53,8 @@ namespace Maze_Hunter
 
 		public void MoveUp()
 		{
+			npc = EncounteredNPC(Grid);
+			
 			if (position[0] > 0)
 			{
 				Grid[position[0], position[1]] = ' ';

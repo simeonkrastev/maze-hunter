@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Numerics;
 
 namespace Maze_Hunter
 {
@@ -16,7 +15,6 @@ namespace Maze_Hunter
         public int GuildChecker;
         public int HealthBonus = 0;
         public int AttackBonus = 0;
-		public Random rand = new Random();
 
 
         public Character()
@@ -66,12 +64,12 @@ namespace Maze_Hunter
 
         public void Guilds()
         {
-            if(GuildChecker == 1)
+            if (GuildChecker == 1)
             {
-                if(HealthBonus <= 0)
+                if (HealthBonus <= 0)
                 {
                     Guild = "Guild Of Thieves";
-                    if(AttackBonus > 0)
+                    if (AttackBonus > 0)
                     {
                         Attack -= 2;
                     }
@@ -84,10 +82,10 @@ namespace Maze_Hunter
             }
             else if (GuildChecker == 2)
             {
-                if(AttackBonus <= 0)
+                if (AttackBonus <= 0)
                 {
                     Guild = "Guild Of Assassins";
-                    if(HealthBonus > 0)
+                    if (HealthBonus > 0)
                     {
                         Health -= 2;
                     }
@@ -112,6 +110,7 @@ namespace Maze_Hunter
 
         public void RandomName()
         {
+            Random rand = new Random();
             NameBase namebase = new NameBase();
             int randomName;
             if (Gender == "Male")
@@ -131,6 +130,7 @@ namespace Maze_Hunter
 
         public void RandomGender()
         {
+            Random rand = new Random();
             int randomGender = rand.Next(1, 3);
             if (randomGender == 1)
             {
@@ -144,6 +144,7 @@ namespace Maze_Hunter
 
         public void RandomGuild()
         {
+            Random rand = new Random();
             GuildChecker = rand.Next(1, 3);
             Guilds();
         }
@@ -153,7 +154,7 @@ namespace Maze_Hunter
             if (GuildChecker == npc.GuildChecker)
             {
                 return $"Meeting with {npc.Name}";
-                //MeetFriend();
+                MeetFriend();
             }
             else
             {
@@ -161,8 +162,7 @@ namespace Maze_Hunter
             }
         }
 
-
-        /*public void MeetFriend()
+        public void MeetFriend()
         {
             if (Health < MaxStats)
             {
@@ -177,7 +177,7 @@ namespace Maze_Hunter
             {
                 Health++;
             }
-        }*/
+        }
 
     }
 }
