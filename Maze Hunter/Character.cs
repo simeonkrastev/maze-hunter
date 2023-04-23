@@ -153,8 +153,8 @@ namespace Maze_Hunter
         {
             if (GuildChecker == npc.GuildChecker)
             {
-                return $"Meeting with {npc.Name}";
                 MeetFriend();
+                return $"Meeting with {npc.Name}";
             }
             else
             {

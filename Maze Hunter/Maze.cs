@@ -93,7 +93,7 @@ namespace Maze_Hunter
 			}
 		}
 
-		public static Character EncounteredNPC(char[,] Grid) // Check for encounters with NPC's
+		public Character EncounteredNPC(char[,] Grid) // Check for encounters with NPC's
 		{
 			for (int i = 0; i < Grid.GetLength(0); i++)
 			{

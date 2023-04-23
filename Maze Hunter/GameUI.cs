@@ -61,7 +61,7 @@ namespace Maze_Hunter
 			gameScreens["NameEnter"] = EnterNameScreen(); // Enter Name Screen ;)
 			gameScreens["AttributesScreen"] = CreateAttributesScreen(player);
 			gameScreens["RandomizeScreen"] = CreateRandomizeScreen();
-            gameScreens["MazeScreen"] = CreateMazeScreen(maze /*, player*/);
+            gameScreens["MazeScreen"] = CreateMazeScreen(maze , player);
 		}
 
 		private Screen CreateStartScreen()
@@ -238,7 +238,7 @@ namespace Maze_Hunter
         }
 
 
-        private Screen CreateMazeScreen(MazeRoom maze /*,Character player*/)
+        private Screen CreateMazeScreen(MazeRoom maze,Character player)
 		{
 			string title =	"==================================================\n" +
 							"=====                  MAZE!                 =====\n" +
@@ -249,7 +249,7 @@ namespace Maze_Hunter
 
 			OptionsMenu menu = new OptionsMenu(options);
 
-			return new MazeScreen(title, menu, maze /*,player*/);
+			return new MazeScreen(title, menu, maze ,player);
 		}
 
 		private void UpdateMenuParams()
