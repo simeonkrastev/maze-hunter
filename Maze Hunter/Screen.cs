@@ -144,20 +144,20 @@ namespace Maze_Hunter
             switch (key)
             {
                 case ConsoleKey.UpArrow:
-                    Maze.MoveUp();
+                    MazeRoom.position[0] -= 1;
                     break;
                 case ConsoleKey.DownArrow:
-                    Maze.MoveDown();
+                    MazeRoom.position[0] += 1;
                     break;
                 case ConsoleKey.LeftArrow:
-                    Maze.MoveLeft();
+                    MazeRoom.position[1] -= 1; 
                     break;
                 case ConsoleKey.RightArrow:
-                    Maze.MoveRight();
+                    MazeRoom.position[1] += 1;
                     break;
             }
 
-            Character character = Maze.EncounteredNPC(Maze.Grid);
+            Character character = Maze.EncounteredNPC(Maze.Grid, MazeRoom.position);
 
             if (character != null)
             {
@@ -165,7 +165,24 @@ namespace Maze_Hunter
             }
             else
             {
+
                 Message = "";
+            }
+
+            switch (key)
+            {
+                case ConsoleKey.UpArrow:
+                    Maze.MoveUp();
+                    break;
+                case ConsoleKey.DownArrow:   
+                    Maze.MoveDown();
+                    break;
+                case ConsoleKey.LeftArrow:  
+                    Maze.MoveLeft();
+                    break;
+                case ConsoleKey.RightArrow:
+                    Maze.MoveRight();
+                    break;
             }
         }
     }
