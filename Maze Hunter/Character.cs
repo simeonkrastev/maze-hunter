@@ -158,6 +158,7 @@ namespace Maze_Hunter
             }
             else
             {
+                Battle(npc);
                 return $"Battle with {npc.Name}";
             }
         }
@@ -176,6 +177,40 @@ namespace Maze_Hunter
             else
             {
                 Health++;
+            }
+        }
+
+        public string Battle(Character npc)
+        {
+            int totalAttack = Attack - npc.Attack;
+            if(totalAttack > 0)
+            {
+                npc.Health -= totalAttack;
+                Health--;
+            }
+            else if (totalAttack < 0)
+            {
+                totalAttack*=-1;
+                Health -= totalAttack;
+                npc.Health--;
+            }
+            else
+            {
+                Health--;
+                npc.Health--;
+            }
+
+            if (Health<=0)
+            {
+                return "Lose";
+            }
+            else if(npc.Health<=0)
+            {
+                return "Win";
+            }
+            else
+            {
+                return "Draw";
             }
         }
 
