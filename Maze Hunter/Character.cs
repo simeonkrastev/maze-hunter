@@ -123,9 +123,6 @@ namespace Maze_Hunter
                 randomName = rand.Next(namebase.femaleNames.Length);
                 Name = namebase.femaleNames[randomName]; ;
             }
-            else
-            {
-            }
         }
 
         public void RandomGender()
@@ -140,6 +137,13 @@ namespace Maze_Hunter
             {
                 Female();
             }
+        }
+
+        public void RandomAttributes()
+        {
+            Random rand = new Random();
+            Health = rand.Next(0, 10);
+            Attack = 10 - Health;
         }
 
         public void RandomGuild()
