@@ -68,7 +68,7 @@ namespace Maze_Hunter
             {
                 if (HealthBonus <= 0)
                 {
-                    Guild = "Guild Of Thieves";
+                    Guild = "Thieves";
                     if (AttackBonus > 0)
                     {
                         Attack -= 2;
@@ -84,7 +84,7 @@ namespace Maze_Hunter
             {
                 if (AttackBonus <= 0)
                 {
-                    Guild = "Guild Of Assassins";
+                    Guild = "Assassins";
                     if (HealthBonus > 0)
                     {
                         Health -= 2;
@@ -123,9 +123,6 @@ namespace Maze_Hunter
                 randomName = rand.Next(namebase.femaleNames.Length);
                 Name = namebase.femaleNames[randomName]; ;
             }
-            else
-            {
-            }
         }
 
         public void RandomGender()
@@ -140,6 +137,13 @@ namespace Maze_Hunter
             {
                 Female();
             }
+        }
+
+        public void RandomAttributes()
+        {
+            Random rand = new Random();
+            Health = rand.Next(0, 10);
+            Attack = 10 - Health;
         }
 
         public void RandomGuild()
@@ -168,15 +172,14 @@ namespace Maze_Hunter
 
         public string Encounter(Character npc)
         {
-            if (GuildChecker == npc.GuildChecker)
+            if (Guild == npc.Guild)
             {
                 MeetFriend();
                 return $"Meeting with {npc.Name}";
             }
             else
             {
-                //Battle(npc);
-                //
+                Battle(npc);
                 return $"Battle with {npc.Name}";
             }
         }

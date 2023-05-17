@@ -98,7 +98,7 @@ namespace Maze_Hunter
         {
             if (Grid[position[0], position[1]] == 'T')
             {
-                Character npc = CharacterGenerator.Generate();
+                Character npc = CharacterGenerator.Generate("Thieves");
 
                 // Example parameters
                 /*npc.Name = "Hristo";
@@ -111,7 +111,7 @@ namespace Maze_Hunter
             }
             else if (Grid[position[0], position[1]] == 'A')
             {
-                Character npc = CharacterGenerator.Generate(); // Example parameters
+                Character npc = CharacterGenerator.Generate("Assassins"); // Example parameters
                 /*npc.Name = "Viki";
                 npc.Guild = "Guild Of Assassins";
                 npc.MaxStats = 10;

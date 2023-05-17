@@ -212,11 +212,13 @@ namespace Maze_Hunter
                 }
 				else if(currentOptionText == "Randomize all")
 				{
-					Player.RandomGuild();
                     Player.RandomGender();
                     Player.RandomName();
+					Player.RandomAttributes();
+					Player.RandomGuild();
+					UI.SetScreen("NewGameScreen");
 					//RandomAttributes( *when ready* ); 
-                }
+				}
             }
 
             else if (UI.currentScreen == "HistoryScreen")

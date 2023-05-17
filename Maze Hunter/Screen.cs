@@ -187,7 +187,7 @@ namespace Maze_Hunter
                 {
                     Message = Player.Encounter(character);
 
-                    if (Message == "Battle with {npc.Name}")
+                    if (Message == $"Battle with {character.Name}")
                     {
                         if (Player.Battle(character) == "Draw")
                         {

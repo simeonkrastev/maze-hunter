@@ -36,9 +36,9 @@ namespace Maze_Hunter
             else if (guild == "Assassins")
             {
                 Character npc = new Character();
-                npc.Guild = "Thieves";
-                npc.RandomName();
+                npc.Guild = "Assassins";
                 npc.RandomGender();
+                npc.RandomName();
                 npc.RandomStats();
                 return npc;
             }
