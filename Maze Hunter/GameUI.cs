@@ -211,7 +211,6 @@ namespace Maze_Hunter
 				"Health:",
 				"Attack:",
 				"Randomize",
-				"Done",
 				"Back"
             };
 
@@ -264,6 +263,12 @@ namespace Maze_Hunter
 				{
 					GetMenu().Options["Attributes"] = $"H:{Player.Health}, A:{Player.Attack}";
 				}
+			}
+
+			if (currentScreen == "AttributesScreen")
+			{
+				GetMenu().Options["Health:"] = "" + Player.Health;
+				GetMenu().Options["Attack:"] = "" + Player.Attack;				
 			}
 		}
 	}

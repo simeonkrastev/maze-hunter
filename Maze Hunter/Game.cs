@@ -189,14 +189,20 @@ namespace Maze_Hunter
             {
 				if (currentOptionText == "Health:")
 				{
-					Player.IncreaseAttribute = "Health";
-					Player.DecreaseAttrtibute = "Health";
+					Console.CursorVisible = true;
+					Player.Health = int.Parse(Console.ReadLine());
+					Player.Attack = 10 - Player.Health;
+					UI.SetScreen("AttributesScreen"); //reset current screen
+					Console.CursorVisible = false;
 				} 
 				if (currentOptionText == "Attack:")
                 {
-                    Player.IncreaseAttribute = "Attack";
-                    Player.DecreaseAttrtibute = "Attack";
-                }
+					Console.CursorVisible = true;
+					Player.Attack = int.Parse(Console.ReadLine());
+					Player.Health = 10 - Player.Attack;
+					UI.SetScreen("AttributesScreen"); //reset current screen
+					Console.CursorVisible = false;
+				}
 				if (currentOptionText == "Back")
                 {
                     UI.SetScreen("NewGameScreen");
