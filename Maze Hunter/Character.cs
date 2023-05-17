@@ -142,6 +142,13 @@ namespace Maze_Hunter
             }
         }
 
+        public void RandomAttributes()
+        {
+            Random rand = new Random();
+            Health = rand.Next(0, 10);
+            Attack = 10 - Health;
+        }
+
         public void RandomGuild()
         {
             Random rand = new Random();
