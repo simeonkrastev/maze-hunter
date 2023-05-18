@@ -68,7 +68,7 @@ namespace Maze_Hunter
             {
                 if (HealthBonus <= 0)
                 {
-                    Guild = "Guild Of Thieves";
+                    Guild = "Thieves";
                     if (AttackBonus > 0)
                     {
                         Attack -= 2;
@@ -84,7 +84,7 @@ namespace Maze_Hunter
             {
                 if (AttackBonus <= 0)
                 {
-                    Guild = "Guild Of Assassins";
+                    Guild = "Assassins";
                     if (HealthBonus > 0)
                     {
                         Health -= 2;
@@ -153,9 +153,26 @@ namespace Maze_Hunter
             Guilds();
         }
 
+        public void RandomStats()
+        {
+            Random rand = new Random();
+            MaxStats = 10;
+            Health = rand.Next(0, MaxStats + 1);
+            Attack = MaxStats - Health;
+
+            if(GuildChecker == 1)
+            {
+                Health += 2;
+            }
+            else
+            {
+                Attack += 2;
+            }
+        }
+
         public string Encounter(Character npc)
         {
-            if (GuildChecker == npc.GuildChecker)
+            if (Guild == npc.Guild)
             {
                 MeetFriend();
                 return $"Meeting with {npc.Name}";
@@ -214,6 +231,7 @@ namespace Maze_Hunter
             }
             else
             {
+                
                 return "Draw";
             }
         }

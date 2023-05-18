@@ -142,6 +142,8 @@ namespace Maze_Hunter
         // For this screen, the arrow keys move the player, instead of menu selection.
         public override void HandleKey(ConsoleKey key)
         {
+            //int[] pastPos = MazeRoom.position;
+
             switch (key)
             {
                 case ConsoleKey.UpArrow:
@@ -158,33 +160,77 @@ namespace Maze_Hunter
                     break;
             }
 
-            Character character = Maze.EncounteredNPC(Maze.Grid, MazeRoom.position);
-
-            if (character != null)
+            if(!Maze.CheckIsPositionValid(MazeRoom.position, Maze.Grid))
             {
-                Message = Player.Encounter(character);
+                //MazeRoom.position = pastPos;
+                switch (key)
+                {
+                    case ConsoleKey.UpArrow:
+                        MazeRoom.position[0] += 1;
+                        break;
+                    case ConsoleKey.DownArrow:
+                        MazeRoom.position[0] -= 1;
+                        break;
+                    case ConsoleKey.LeftArrow:
+                        MazeRoom.position[1] += 1;
+                        break;
+                    case ConsoleKey.RightArrow:
+                        MazeRoom.position[1] -= 1;
+                        break;
+                }
             }
             else
             {
+                Character character = Maze.EncounteredNPC(Maze.Grid, MazeRoom.position);
 
-                Message = "";
-            }
+                if (character != null)
+                {
+                    Message = Player.Encounter(character);
 
-            switch (key)
-            {
-                case ConsoleKey.UpArrow:
-                    Maze.MoveUp();
-                    break;
-                case ConsoleKey.DownArrow:   
-                    Maze.MoveDown();
-                    break;
-                case ConsoleKey.LeftArrow:  
-                    Maze.MoveLeft();
-                    break;
-                case ConsoleKey.RightArrow:
-                    Maze.MoveRight();
-                    break;
-            }
+                    if (Message == $"Battle with {character.Name}")
+                    {
+                        if (Player.Battle(character) == "Draw")
+                        {
+                            switch (key)
+                            {
+                                case ConsoleKey.UpArrow:
+                                    MazeRoom.position[0] += 1;
+                                    break;
+                                case ConsoleKey.DownArrow:
+                                    MazeRoom.position[0] -= 1;
+                                    break;
+                                case ConsoleKey.LeftArrow:
+                                    MazeRoom.position[1] += 1;
+                                    break;
+                                case ConsoleKey.RightArrow:
+                                    MazeRoom.position[1] -= 1;
+                                    break;
+                            }
+                        }
+                    }         
+                }
+                else
+                {
+
+                    Message = "";
+                }
+
+                switch (key)
+                {
+                    case ConsoleKey.UpArrow:
+                        Maze.MoveUp();
+                        break;
+                    case ConsoleKey.DownArrow:
+                        Maze.MoveDown();
+                        break;
+                    case ConsoleKey.LeftArrow:
+                        Maze.MoveLeft();
+                        break;
+                    case ConsoleKey.RightArrow:
+                        Maze.MoveRight();
+                        break;
+                }
+            }   
         }
     }
 }

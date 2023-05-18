@@ -1,4 +1,6 @@
-﻿namespace Maze_Hunter
+﻿using System.CodeDom.Compiler;
+
+namespace Maze_Hunter
 {
     // The MazeRoom class manages the movement and actions in the maze.
     // The maze is a 8x8 matrix of characters.
@@ -51,13 +53,10 @@
 
         public void MoveUp()
         {
-            //npc = EncounteredNPC(Grid);
-
             if (position[0] >= 0)
             {
                 int row = position[0] + 1;
                 Grid[row, position[1]] = ' ';
-                //position[0]--;
                 Grid[position[0], position[1]] = 'P';
             }
         }
@@ -97,32 +96,59 @@
 
         public Character EncounteredNPC(char[,] Grid, int[] position) // Check for encounters with NPC's
         {
-            //for (int i = 0; i < Grid.GetLength(0); i++)
-            //{
-            //for (int j = 0; j < Grid.GetLength(1); j++)
-            //{
-            if (/*Grid[i, j] == 'P' && Grid[i, j] == 'T'*/ Grid[position[0], position[1]] == 'T')
+            if (Grid[position[0], position[1]] == 'T')
             {
-                Character npc = new Character(); // Example parameters
-                npc.Name = "Hristo";
+                Character npc = CharacterGenerator.Generate("Thieves");
+
+                // Example parameters
+                /*npc.Name = "Hristo";
                 npc.Guild = "Guild Of Thieves";
-                npc.GuildChecker = 1;
+                npc.MaxStats = 10;
+                npc.Health = 7;
+                npc.Attack = 3;
+                npc.GuildChecker = 1;*/
                 return npc;
             }
-            else if (/*Grid[i, j] == 'P' && Grid[i, j] == 'A'*/ Grid[position[0], position[1]] == 'A')
+            else if (Grid[position[0], position[1]] == 'A')
             {
-                Character npc = new Character();
-                npc.Name = "Viki";
+                Character npc = CharacterGenerator.Generate("Assassins"); // Example parameters
+                /*npc.Name = "Viki";
                 npc.Guild = "Guild Of Assassins";
-                npc.GuildChecker = 2;
+                npc.MaxStats = 10;
+                npc.Health = 6;
+                npc.Attack = 4;
+                npc.GuildChecker = 2;*/
                 return npc;
             }
             else
             {
                 return null;
             }
-            //}
-            //}
+        }
+
+        public bool CheckIsPositionValid(int[] position, char[,] Grid)
+        {
+            bool validRow = false;
+            bool validColumn = false;
+
+            if (position[0] < Grid.GetLength(0) && position[0] >= 0)
+            {
+                validRow = true;
+            }
+
+            if (position[1] < Grid.GetLength(1) && position[1] >= 0)
+            {
+                validColumn = true;
+            }
+
+            if(validRow && validColumn)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
